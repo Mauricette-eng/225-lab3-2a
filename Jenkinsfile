@@ -56,14 +56,15 @@ pipeline {
             }
         }
     }
-    post {
+       post {
         success {
-            slackSend([color: "good", message: "Build Completed: ${env.JOB_NAME} ${env.NUMBER}"])
+            slackSend([color: "good", message: "Build Completed: ${env.JOB_NAME} ${env.BUILD_NUMBER}"])
         }
         unstable {
-            slackSend([color: "warming", message: "Build Completed: ${env.JOB_NAME} ${env.BUILD_NUMBER}"])
+            slackSend([color: "warning", message: "Build Completed: ${env.JOB_NAME} ${env.BUILD_NUMBER}"])
         }
-        failure{
+        failure {
             slackSend([color: "danger", message: "Build Completed: ${env.JOB_NAME} ${env.BUILD_NUMBER}"])
-        }
+    }
+}
     }
